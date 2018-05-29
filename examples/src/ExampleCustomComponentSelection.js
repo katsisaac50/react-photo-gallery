@@ -24,7 +24,11 @@ class ExampleCustomComponentSelection extends React.Component {
         <h2>Using the ImageComponent prop</h2>
         <h3>Pass in a custom image component to create any visual representation such as selection</h3>
         <p><button className="toggle-select" onClick={this.toggleSelect}>toggle select all</button></p>
-        <Gallery photos={this.state.photos} columns={this.props.columns} onClick={this.selectPhoto} ImageComponent={SelectedImage}/>
+        <Gallery photos={this.state.photos} columns={this.props.columns} onClick={this.selectPhoto}>
+          {image => (
+            <SelectedImage image={image} test="123" />
+          )}
+        </Gallery>
       </div>
     );
   }
