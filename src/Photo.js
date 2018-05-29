@@ -10,7 +10,7 @@ class Photo extends PureComponent {
   }
 
   handleClick(event) {
-    const { onClick, index, photo } = this.props;
+    const { onClick, index, photo } = this.props.image;
     onClick(event, { photo, index });
   }
 
