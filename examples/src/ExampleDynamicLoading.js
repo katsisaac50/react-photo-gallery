@@ -1,5 +1,5 @@
 import React from 'react';
-import Gallery from 'react-photo-gallery';
+import Gallery, { Photo } from 'react-photo-gallery';
 
 function debounce(func, wait, immediate) {
     let timeout;
@@ -51,7 +51,11 @@ class ExampleDynamicLoading extends React.Component {
     return (
       <div>
         <h2>Loading Photos Dynamically</h2>
-        <Gallery photos={this.state.photos} columns={this.props.columns} />
+        <Gallery photos={this.state.photos} columns={this.props.columns}>
+          {image => (
+            <Photo image={image} />
+          )}
+        </Gallery>
         {!this.state.loadedAll && <div className="loading-msg" id="msg-loading-more">Loading</div>}
       </div>
     );
