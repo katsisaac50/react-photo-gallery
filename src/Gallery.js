@@ -46,7 +46,6 @@ class Gallery extends React.Component {
   }
 
   render() {
-    const { ImageComponent = Photo } = this.props;
     // subtract 1 pixel because the browser may round up a pixel
     const width = this.state.containerWidth - 1;
     const { photos, columns, margin, onClick } = this.props;
@@ -55,15 +54,15 @@ class Gallery extends React.Component {
       <div className="react-photo-gallery--gallery">
         <div ref={c => (this._gallery = c)}>
           {thumbs.map((photo, index) => {
-            const { width, height } = photo;
             return (
-              <ImageComponent
-                key={photo.key || photo.src}
-                margin={margin}
-                index={index}
-                photo={photo}
-                onClick={onClick ? this.handleClick : null}
-              />
+              <div key={photo.key || photo.src}>
+              {this.props.children({
+                margin: margin,
+                index: index,
+                photo: photo,
+                onClick: onClick ? this.handleClick : null
+              })}
+              </div>
             );
           })}
         </div>
@@ -78,7 +77,7 @@ Gallery.propTypes = {
   onClick: PropTypes.func,
   columns: PropTypes.number,
   margin: PropTypes.number,
-  ImageComponent: PropTypes.func,
+  children: PropTypes.func,
 };
 
 Gallery.defaultProps = {
