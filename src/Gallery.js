@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Photo, { photoPropType } from './Photo';
+import { photoPropType } from './Photo';
 import { computeSizes } from './utils';
 
 class Gallery extends React.Component {

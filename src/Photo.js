@@ -15,7 +15,7 @@ class Photo extends PureComponent {
   }
 
   render() {
-    const { photo, onClick, margin } = this.props;
+    const { photo, onClick, margin } = this.props.image;
     const imgStyle = { display: 'block', float: 'left', margin: margin };
     return (
       <img
