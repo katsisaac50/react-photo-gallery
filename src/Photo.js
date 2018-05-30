@@ -33,8 +33,14 @@ export const imagePropType = PropTypes.shape({
   height: PropTypes.number.isRequired,
   alt: PropTypes.string,
   title: PropTypes.string,
-  srcSet: PropTypes.array,
-  sizes: PropTypes.array,
+  srcSet: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array
+  ]),
+  sizes: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array
+  ]),
 });
 
 Photo.propTypes = {
