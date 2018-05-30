@@ -5,9 +5,9 @@ const ExampleBasic = ({photos, columns}) => {
     return (
       <div>
         <h2>Basic</h2>
-        <Gallery photos={photos} columns={columns}>
-          {image => (
-            <Photo image={image} />
+        <Gallery images={photos} columns={columns}>
+          {props => (
+            <Photo {...props} />
           )}
         </Gallery>
       </div>

@@ -38,9 +38,9 @@ class ExampleWithLightbox extends React.Component {
     return (
       <div>
         <h2>Using with a Lightbox component</h2>
-        <Gallery photos={this.props.photos} columns={this.props.columns} onClick={this.openLightbox}>
-          {image => (
-            <Photo image={image} />
+        <Gallery images={this.props.photos} columns={this.props.columns} onClick={this.openLightbox}>
+          {props => (
+            <Photo {...props} />
           )}
         </Gallery>
         <Lightbox
