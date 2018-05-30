@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { photoPropType } from './Photo';
+import { imagePropType } from './Photo';
 import { computeSizes } from './utils';
 
 class Gallery extends React.Component {
@@ -36,30 +36,30 @@ class Gallery extends React.Component {
     }
   }
   handleClick(event, { index }) {
-    const { photos, onClick } = this.props;
+    const { images, onClick } = this.props;
     onClick(event, {
       index,
-      photo: photos[index],
-      previous: photos[index - 1] || null,
-      next: photos[index + 1] || null,
+      image: images[index],
+      previous: images[index - 1] || null,
+      next: images[index + 1] || null,
     });
   }
 
   render() {
     // subtract 1 pixel because the browser may round up a pixel
     const width = this.state.containerWidth - 1;
-    const { photos, columns, margin, onClick } = this.props;
-    const thumbs = computeSizes({ width, columns, margin, photos });
+    const { images, columns, margin, onClick } = this.props;
+    const thumbs = computeSizes({ width, columns, margin, images });
     return (
       <div className="react-photo-gallery--gallery">
         <div ref={c => (this._gallery = c)}>
-          {thumbs.map((photo, index) => {
+          {thumbs.map((image, index) => {
             return (
-              <div key={photo.key || photo.src}>
+              <div key={image.key || image.src}>
               {this.props.children({
                 margin: margin,
                 index: index,
-                photo: photo,
+                image: image,
                 onClick: onClick ? this.handleClick : null
               })}
               </div>
@@ -73,7 +73,7 @@ class Gallery extends React.Component {
 }
 
 Gallery.propTypes = {
-  photos: PropTypes.arrayOf(photoPropType).isRequired,
+  images: PropTypes.arrayOf(imagePropType).isRequired,
   onClick: PropTypes.func,
   columns: PropTypes.number,
   margin: PropTypes.number,

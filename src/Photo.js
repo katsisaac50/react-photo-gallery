@@ -10,24 +10,24 @@ class Photo extends PureComponent {
   }
 
   handleClick(event) {
-    const { onClick, index, photo } = this.props.image;
-    onClick(event, { photo, index });
+    const { onClick, index, image } = this.props;
+    onClick(event, { image, index });
   }
 
   render() {
-    const { photo, onClick, margin } = this.props.image;
+    const { image, onClick, margin, test } = this.props;
     const imgStyle = { display: 'block', float: 'left', margin: margin };
     return (
       <img
         style={onClick ? { ...imgStyle, ...imgWithClick } : imgStyle}
-        {...photo}
+        {...image}
         onClick={onClick ? this.handleClick : null}
       />
     );
   }
 }
 
-export const photoPropType = PropTypes.shape({
+export const imagePropType = PropTypes.shape({
   src: PropTypes.string.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
@@ -40,7 +40,7 @@ export const photoPropType = PropTypes.shape({
 Photo.propTypes = {
   index: PropTypes.number,
   onClick: PropTypes.func,
-  photo: photoPropType,
+  image: imagePropType,
 };
 
 export default Photo;
