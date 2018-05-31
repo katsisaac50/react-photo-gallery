@@ -53,18 +53,19 @@ class Gallery extends React.Component {
     return (
       <div className="react-photo-gallery--gallery">
         <div ref={c => (this._gallery = c)}>
-          {thumbs.map((image, index) => {
-            return (
-              <div key={image.key || image.src}>
-              {this.props.children({
-                margin: margin,
-                index: index,
-                image: image,
-                onClick: onClick ? this.handleClick : null
-              })}
-              </div>
-            );
-          })}
+          <React.Fragment>
+            {thumbs.map((image, index) => {
+              return (
+                this.props.children({
+                  margin: margin,
+                  index: index,
+                  image: image,
+                  key: image.key || image.src,
+                  onClick: onClick ? this.handleClick : null
+                })
+              );
+            })}
+          </React.Fragment>
         </div>
         <div style={{ content: '', display: 'table', clear: 'both' }} />
       </div>
