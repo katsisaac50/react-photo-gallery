@@ -15,12 +15,13 @@ class Photo extends PureComponent {
   }
 
   render() {
-    const { image, onClick, margin, test } = this.props;
+    const { image, onClick, margin } = this.props;
     const imgStyle = { display: 'block', float: 'left', margin: margin };
+    const { key: foo, ...imgAttrs} =  image; // separate out the key we don't need on the img
     return (
       <img
         style={onClick ? { ...imgStyle, ...imgWithClick } : imgStyle}
-        {...image}
+        {...imgAttrs}
         onClick={onClick ? this.handleClick : null}
       />
     );
@@ -33,6 +34,10 @@ export const imagePropType = PropTypes.shape({
   height: PropTypes.number.isRequired,
   alt: PropTypes.string,
   title: PropTypes.string,
+  key: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   srcSet: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array
